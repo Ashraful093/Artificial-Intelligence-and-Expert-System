@@ -1,0 +1,19 @@
+def binToDecimal(binList):
+  decValue = 0 # decimel value
+  power = len(binList)
+  for digit in binList: # binary to decimel
+    decValue += digit*2**(power-1)
+    power -= 1
+  return decValue
+
+def func(x):
+  return x**2 - 11*x + 150
+
+def getFitness(p): # p is the whole population
+    f = [] # to store fitness values
+    for sol in p:
+        d = binToDecimal(sol)
+        v = func(d)
+        if v< 0: f.append(0)
+        else: f.append(v) # fitness function
+    return f
