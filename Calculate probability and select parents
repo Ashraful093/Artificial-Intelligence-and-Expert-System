@@ -1,0 +1,21 @@
+import numpy as np
+def select_parent(n, pop): # probability, parent selection
+    # probability
+    fitness = getFitness(pop)
+    total_fitness = sum(fitness)
+    prob = [f/total_fitness for f in fitness]
+    cumSumProb = np.cumsum(prob)
+    #print(cumSumProb)
+    # parent selection
+    parents = []
+    for i in range(n):
+        # roullete wheel, generate a random number
+        r = random.random()
+        #print(r)
+        # check bin number of r        
+        for j in range(len(cumSumProb)):
+            if r <= cumSumProb[j] :#checking the bin
+                #print(j)
+                parents.append(pop[j])
+                break
+    return parents
